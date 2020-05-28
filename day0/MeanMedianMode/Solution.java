@@ -1,4 +1,5 @@
-import java.io.*;
+package day0.MeanMedianMode;
+
 import java.util.*;
 
 public class Solution {
@@ -57,5 +58,6 @@ public class Solution {
         // al.forEach(num -> System.out.printf("%d ", num));
         // System.out.println();
         System.out.println(mode(al));
+        sc.close();
     }
 }

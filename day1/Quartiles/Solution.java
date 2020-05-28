@@ -1,3 +1,5 @@
+package day1.Quartiles;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;

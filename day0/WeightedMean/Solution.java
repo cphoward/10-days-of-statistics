@@ -1,4 +1,5 @@
-import java.io.*;
+package day0.WeightedMean;
+
 import java.util.*;
 
 public class Solution {
@@ -18,5 +19,6 @@ public class Solution {
             numerator += weight * elements.get(i);
         } // end for
         System.out.printf("%.1f", numerator/denominator);
+        scan.close();
     }
 }
