@@ -4,39 +4,48 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-class Pair {
-  public Integer first;
-  public Integer second;
-  public Pair(Integer f, Integer s) {
-    first = f;
-    second = s;
-  }
-  public String toString() {
-    return first + " " + second;
-  }
-}
-
 public class Solution {
+  public static float median(final ArrayList<Integer> al) {
+    final int n = al.size();
+    if (n % 2 == 1) {
+        return al.get(n/2);
+    } else {
+        final int left = n/2-1;
+        final int right = n/2;
+        return (((float)al.get(left))+al.get(right))/2.0f;
+    }
+  }
   public static void main(final String[] args) {
-    // Pair<Integer, Integer> p = new Pair<Integer, Integer>(1,2);
     final Scanner scan = new Scanner(System.in);
-    final ArrayList<Pair> al = new ArrayList<>(50);
+    final ArrayList<Integer> elms = new ArrayList<>(50 * 1000);
     final Integer n = scan.nextInt();
     final Integer[] firsts = new Integer[50];
     final Integer[] seconds = new Integer[50];
+
     for (Integer i = 0; i < n; i++) {
       firsts[i] = scan.nextInt();
     }
     for (Integer i = 0; i < n; i++) {
       seconds[i] = scan.nextInt();
     }
-    for (Integer i = 0; i < n; i++) {
-      al.add(new Pair(firsts[i], seconds[i]));
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < seconds[i]; j++) {
+        elms.add(firsts[i]);
+      }
     }
-    Collections.sort(al, (o1, o2) -> (o1.first.compareTo(o2.first)));
-    for (Pair p : al) {
-      System.out.println(p);
-    }
+
+    Collections.sort(elms);
+
+    final Integer arraySize = elms.size();
+    if (elms.size() % 2 == 0) {
+      float q1 = median(new ArrayList<>(elms.subList(0, arraySize/2)));
+      float q3 = median(new ArrayList<>(elms.subList(arraySize/2, arraySize)));
+      System.out.printf("%.1f", q3 - q1);
+    } else {
+      float q1 = median(new ArrayList<>(elms.subList(0, arraySize/2)));
+      float q3 = median(new ArrayList<>(elms.subList(arraySize/2+1, arraySize)));
+      System.out.printf("%.1f", q3 - q1);
+    } // end if
     scan.close();
   }
 }
